@@ -1,0 +1,41 @@
+MailChime - An alerter for physical mailboxes
+
+* Hardware
+Receiver:
+- [[https://datasheetspdf.com/pdf-file/972940/Holtek/7130-1/1][7130-1 3.0v 30mA LDO]]
+- [[https://pdf1.alldatasheet.com/datasheet-pdf/view/118205/EMC/EM78P153S.html][EM78P153S 8-bit microcontroller]]
+- [[https://www.mouser.com/Search/Refine?Keyword=T93C46&FS=True&Tb=datasheets][T93C46 1Kb EEPROM]]
+- [[https://datasheet.lcsc.com/szlcsc/Synoxo-SYN500R_C115709.pdf][SYN500R ASK receiver]]  (note: D0=pin10)
+- SPK13.52127N 13.52127MHz crystal
+
+- Transmitter
+- [[https://oinc.pixnet.net/blog/post/66321673][OT2240]], similar to [[http://static6.arrow.com/aropdfconversion/d9f4295a84b3d153283406b4bf79cf361ad3ec6f/pt2240.pdf][PT2240]]
+
+SMT transistors
+B 1
+    3 E
+C 2
+
+* Signal
+** From live_decoder.grc:
+1.689825s signal duration
+48.5 frames
+frame = 34941us = 27282us data + 7659us silence
+24 symbols + 1 sync, eg:
++ 1096us = 800us + 296us
++ 1093us = 255us + 838us
++ 1095us = 801us + 294us
+
+** From rc-switch
+Decimal: 9367300 (24Bit) Binary: 100011101110111100000100 Tri-State: not applicable PulseLength: 275 microseconds Protocol: 1
+Raw data: 8530,773,325,222,872,223,873,222,873,770,328,769,330,768,330,218,877,767,330,767,332,766,334,214,880,765,335,763,336,762,333,764,335,213,882,215,880,215,880,216,879,216,881,763,334,213,881,214,883,
+
+* CC1101
+** SMA antenna, 10-pin version
+| NodeMCU | color  | CC1101 | . | CC1101 | color  | NodeMCU |
+|---------+--------+--------+---+--------+--------+---------|
+| 3v      | red    | VCC    | . | VCC    | nc     |         |
+| d7      | blue   | SI     | . | SCK    | purple | d5      |
+| d6      | green  | SO     | . | GD2    | grey   | d1      |
+| d8      | orange | CSN    | . | GD0    | yellow | d2      |
+| gnd     | black  | GND    | . | GND    | nc     |         |
